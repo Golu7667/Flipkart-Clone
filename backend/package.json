@@ -23,9 +23,7 @@
     "mongoose": "^7.1.0",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.3",
-    "paytmchecksum": "^1.5.0",
     "razorpay": "^2.8.6",
-    "uuid": "^9.0.0",
     "validator": "^13.9.0"
   }
 }
