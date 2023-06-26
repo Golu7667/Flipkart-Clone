@@ -112,7 +112,7 @@ exports.forgotPassword = asyncErrorHandler(async (req, res, next) => {
 
     await user.save({ validateBeforeSave: false });
 //${req.protocol}://${req.get("host")}
-const resetPasswordUrl = `http://localhost:3000/password/reset/${resetToken}`;
+const resetPasswordUrl = `https://flipkartmern.vercel.app/password/reset/${resetToken}`;
     // const resetPasswordUrl = `https://${req.get("host")}/password/reset/${resetToken}`;
 
     const message = `Your password reset token is : \n\n ${resetPasswordUrl}`;
