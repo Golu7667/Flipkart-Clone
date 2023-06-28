@@ -101,7 +101,9 @@ const Payment = () => {
 
       if (scriptLoaded) {
         const rzp = new window.Razorpay(options);
-        rzp.open();
+        rzp.open({
+          container: document.getElementById('razorpay-checkout'),
+        });
       } else {
         enqueueSnackbar('Failed to load Razorpay. Please try again later.', {
           variant: 'error',
