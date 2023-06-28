@@ -73,7 +73,7 @@ const { name, email, gender, password,avatar} = req.body;
             return next(new ErrorHandler("Invalid Email or Password", 401));
         }
         
-       endToken(user, 200, res); 
+       sendToken(user, 200, res); 
         
     });
 
