@@ -5,6 +5,7 @@ const sendToken = (user, statusCode, res) => {
     const options = {
         expires: new Date(Date.now() + 1000 * 60 * 60 * 24), // 1 day
         httpOnly: true,
+        secure:true
     }
     const token = jwt.sign({ id: user._id }, 'secret')
     console.log(token)
