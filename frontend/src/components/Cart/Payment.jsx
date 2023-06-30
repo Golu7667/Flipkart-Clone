@@ -14,10 +14,12 @@ import MetaData from '../Layouts/MetaData';
 import { useNavigate } from 'react-router-dom';
 import { newOrder } from '../../actions/orderAction';
 import { emptyCart } from '../../actions/cartAction';
+import useRazorpay from "react-razorpay";
 
 const Payment = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const Razorpay = useRazorpay();
   const { enqueueSnackbar } = useSnackbar();
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
@@ -100,10 +102,11 @@ const Payment = () => {
       const scriptLoaded = await loadScript('https://checkout.razorpay.com/v1/checkout.js');
 
       if (scriptLoaded) {
-        const rzp = new window.Razorpay(options);
-        rzp.open({
-          container: document.getElementById('razorpay-checkout'),
-        });
+        const rzp = new Razorpay(options);
+  rzp.on('payment.failed', (response) => {
+    enqueueSnackbar('Payment failed', { variant: 'error' });
+  });
+  rzp.open();
       } else {
         enqueueSnackbar('Failed to load Razorpay. Please try again later.', {
           variant: 'error',
