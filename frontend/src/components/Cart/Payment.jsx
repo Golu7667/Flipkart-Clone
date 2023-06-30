@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import { newOrder } from '../../actions/orderAction';
 import { emptyCart } from '../../actions/cartAction';
 import useRazorpay from "react-razorpay";
-import baseurl from "./Cart/components/urlconfig"
+import baseurl from "../Cart/components/urlconfig"
 
 const Payment = () => {
   const dispatch = useDispatch();
