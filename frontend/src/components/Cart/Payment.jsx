@@ -103,10 +103,8 @@ const Payment = () => {
 
       if (scriptLoaded) {
         const rzp = new Razorpay(options);
-  rzp.on('payment.failed', (response) => {
-    enqueueSnackbar('Payment failed', { variant: 'error' });
-  });
-  rzp.open();
+ 
+         rzp.open();
       } else {
         enqueueSnackbar('Failed to load Razorpay. Please try again later.', {
           variant: 'error',
