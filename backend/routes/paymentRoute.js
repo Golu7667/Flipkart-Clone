@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.route('/payment/process').post(processPayment);
 router.route('/callback').post(verifyPayment);
-router.route('/payment/status/:id').get(isAuthenticatedUser, getPaymentStatus);
-
+router.route('/payment/status/:id').get(getPaymentStatus);
+// isAuthenticatedUser
 module.exports = router;

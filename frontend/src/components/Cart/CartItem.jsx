@@ -6,7 +6,7 @@ import { saveForLater } from '../../actions/saveForLaterAction';
 import { Link } from 'react-router-dom';
 
 const CartItem = ({ product, name, seller, price, cuttedPrice, image, stock, quantity, inCart }) => {
-
+    console.log(image) 
     const dispatch = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
 

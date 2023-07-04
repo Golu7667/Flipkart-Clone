@@ -7,7 +7,7 @@ import { clearErrors, getPaymentStatus, newOrder } from '../../actions/orderActi
 import Loader from '../Layouts/Loader';
 
 const OrderStatus = () => {
-
+    console.log("orderstatus")
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
@@ -17,10 +17,15 @@ const OrderStatus = () => {
 
     const { loading, txn, error } = useSelector((state) => state.paymentStatus);
     const { loading: orderLoading, order, error: orderError } = useSelector((state) => state.newOrder);
-
+     console.log(loading,txn)
     const totalPrice = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
+    let  paymentInfo={
+        id:txn,
+        status:"success"
+       }
     const orderData = {
+        paymentInfo,
         shippingInfo,
         orderItems: cartItems,
         totalPrice,
@@ -29,7 +34,7 @@ const OrderStatus = () => {
     useEffect(() => {
         if (loading === false) {
             if(txn) {
-                if (txn.status === "TXN_SUCCESS") {
+                if (txn.status === "captured") {
                     orderData.paymentInfo = {
                         id: txn.id,
                         status: txn.status,
@@ -49,6 +54,7 @@ const OrderStatus = () => {
     }, [loading])
 
     useEffect(() => {
+        console.log(orderLoading,order,orderError)
         if (orderLoading === false) {
             if (order) {
                 enqueueSnackbar("Order Placed", { variant: "success" });
@@ -70,6 +76,9 @@ const OrderStatus = () => {
             enqueueSnackbar(orderError, { variant: "error" });
             dispatch(clearErrors());
         }
+   
+      
+        console.log(params.id,"hot day ")
         dispatch(getPaymentStatus(params.id));
     }, [dispatch, error, orderError, params.id, enqueueSnackbar]);
 

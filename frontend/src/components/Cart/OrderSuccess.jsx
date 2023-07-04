@@ -5,7 +5,7 @@ import successfull from '../../assets/images/Transaction/success.png';
 import failed from '../../assets/images/Transaction/failed.png';
 
 const OrderSuccess = ({ success }) => {
-
+      console.log("ordersuccess")
     const navigate = useNavigate();
     const [time, setTime] = useState(3);
 

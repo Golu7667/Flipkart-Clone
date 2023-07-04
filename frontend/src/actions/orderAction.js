@@ -82,7 +82,7 @@ export const getPaymentStatus = (id) => async (dispatch) => {
         const { data } = await axios.get(`${baseurl}/payment/status/${id}`,{
             withCredentials: true
         });
-
+         console.log(data)
         dispatch({
             type: PAYMENT_STATUS_SUCCESS,
             payload: data.txn,

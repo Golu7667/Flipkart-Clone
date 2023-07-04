@@ -16,6 +16,8 @@ import { newOrder } from '../../actions/orderAction';
 import { emptyCart } from '../../actions/cartAction';
 import useRazorpay from "react-razorpay";
 import baseurl from "../../urlconfig"
+import { getPaymentStatus } from '../../actions/orderAction';
+
 
 const Payment = () => {
   const dispatch = useDispatch();
@@ -44,7 +46,7 @@ const Payment = () => {
     setPayDisable(true);
 
     try {
-      const { data: order } = await axios.post(`${baseurl}/payment/process`, paymentData);
+      const { data: order } = await axios.post(`http://localhost:4000/api/v1/payment/process`, paymentData);
 
       const options = {
         key: 'rzp_test_u743lHilR2AxPn',
@@ -64,7 +66,7 @@ const Payment = () => {
               signature: response.razorpay_signature,
             };
 
-            let paymentResponse = await axios.post(`${baseurl}/callback`, paymentResult);
+            let paymentResponse = await axios.post(`http://localhost:4000/api/v1/callback`, paymentResult);
             console.log(paymentResponse.data)
              let  paymentInfo={
               id:paymentResponse.data.id,
@@ -77,9 +79,10 @@ const Payment = () => {
               totalPrice,
             }
             // dispatch(createOrder(order));
-            dispatch(newOrder(order));
-            dispatch(emptyCart());
-            navigate("/order/success");
+            // dispatch(newOrder(order));
+            // dispatch(emptyCart());
+            dispatch(getPaymentStatus(paymentResponse.data.order_id))
+            navigate(`/order/${paymentResponse.data.order_id}`);
             // Redirect to success page or display success message
           } catch (error) {
             enqueueSnackbar('Payment failed', { variant: 'error' });

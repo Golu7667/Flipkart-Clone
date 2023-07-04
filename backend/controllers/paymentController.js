@@ -65,6 +65,7 @@ exports.verifyPayment = async (req, res, next) => {
       })
       res.status(200).json({
         id:payment.id,
+        order_id:payment.order_id,
         status:"success",
       });
     } else {
@@ -79,13 +80,13 @@ exports.verifyPayment = async (req, res, next) => {
 
 exports.getPaymentStatus = async (req, res, next) => {
   const payment = await Payment.findOne({ orderId: req.params.id });
-
+   console.log(req.params.id,"hi friend")
   if (!payment) {
     return next(new ErrorHandler('Payment Details Not Found', 404));
   }
 
   const txn = {
-    id: payment.paymentId,
+    id: payment.orderId,
     status: 'captured',
   };
 
