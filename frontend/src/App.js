@@ -1,12 +1,12 @@
+import React,{ useEffect,Suspense } from 'react';
+import { useDispatch } from 'react-redux';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import WebFont from 'webfontloader';
 import Footer from './components/Layouts/Footer/Footer';
 import Header from './components/Layouts/Header/Header';
 import Login from './components/User/Login';
 import Register from './components/User/Register';
-import { Routes, Route, useLocation } from 'react-router-dom';
 import { loadUser } from './actions/userAction';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import UpdateProfile from './components/User/UpdateProfile';
 import UpdatePassword from './components/User/UpdatePassword';
 import ForgotPassword from './components/User/ForgotPassword';
@@ -36,9 +36,8 @@ import UpdateUser from './components/Admin/UpdateUser';
 import ReviewsTable from './components/Admin/ReviewsTable';
 import Wishlist from './components/Wishlist/Wishlist';
 import NotFound from './components/NotFound';
-import {useState} from "react"
-import axios from "axios"
-
+// const Login= React.lazy(() => import('./components/User/Login'))
+// const Footer = React.lazy(() => import('./components/Layouts/Footer/Footer'))
 
 function App() {
 
@@ -78,7 +77,11 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={
+           <Suspense fallback={<div>Loading...</div>}>
+        <Login />
+        </Suspense>
+        } />
         <Route path="/register" element={<Register />} />
 
         <Route path="/product/:id" element={<ProductDetails />} />
@@ -225,13 +228,15 @@ function App() {
             <Dashboard activeTab={5}>
               <ReviewsTable />
             </Dashboard>
-          </ProtectedRoute>
+          </ProtectedRoute> 
         } ></Route>
 
         <Route path="*" element={<NotFound />}></Route>
 
       </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
       <Footer />
+      </Suspense>
     </>
   );
 }

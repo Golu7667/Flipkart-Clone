@@ -46,7 +46,7 @@ const Payment = () => {
     setPayDisable(true);
 
     try {
-      const { data: order } = await axios.post(`http://localhost:4000/api/v1/payment/process`, paymentData);
+      const { data: order } = await axios.post(`${baseurl}/payment/process`, paymentData);
 
       const options = {
         key: 'rzp_test_u743lHilR2AxPn',
@@ -66,7 +66,7 @@ const Payment = () => {
               signature: response.razorpay_signature,
             };
 
-            let paymentResponse = await axios.post(`http://localhost:4000/api/v1/callback`, paymentResult);
+            let paymentResponse = await axios.post(`${baseurl}/callback`, paymentResult);
             console.log(paymentResponse.data)
              let  paymentInfo={
               id:paymentResponse.data.id,
