@@ -32,22 +32,22 @@ const Account = () => {
             {loading ? <Loader />:
             <>
                  <MinCategory />
-                    <main className="w-full mt-12 sm:mt-0">
+                    <main className="mx-2  mt-20  sm:mt-0">
 
                         {/* <!-- row --> */}
-                        <div className="flex gap-3.5 sm:w-11/12 sm:mt-4 m-auto mb-7">
+                        <div className="flex flex-row gap-3.5 sm:w-11/12 sm:mt-4 m-auto mb-7">
 
                             <Sidebar activeTab={"profile"} />
 
                             {/* <!-- details column --> */}
-                            <div className="flex-1 overflow-hidden shadow bg-white">
+                            <div className="shadow-lg rounded-md flex-1 overflow-hidden shadow bg-white">
                                 {/* <!-- edit info container --> */}
                                 <div className="flex flex-col gap-12 m-4 sm:mx-8 sm:my-6">
                                     {/* <!-- personal info --> */}
                                     <div className="flex flex-col gap-5 items-start">
                                         <span className="font-medium text-lg">Personal Information <Link to="/account/update" className="text-sm text-primary-blue font-medium ml-8 cursor-pointer">Edit</Link></span>
 
-                                        <div className="flex flex-col sm:flex-row items-center gap-3" id="personalInputs">
+                                        <div className="flex flex-col md:flex-row items-center gap-3" id="personalInputs">
                                             <div className="flex flex-col gap-0.5 w-64 px-3 py-1.5 rounded-sm border inputs cursor-not-allowed bg-gray-100 focus-within:border-primary-blue">
                                                 <label className="text-xs text-gray-500">First Name</label>
                                                 <input type="text" value={user.name.split(" ", 1)} className="text-sm outline-none border-none cursor-not-allowed text-gray-500" disabled />

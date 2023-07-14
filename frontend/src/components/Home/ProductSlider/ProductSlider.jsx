@@ -21,7 +21,7 @@ const ProductSlider = ({ title, tagline }) => {
             </div>
             <hr />
             {loading ? null :
-                <Slider {...settings} className="flex items-center justify-between p-1">
+                <Slider {...settings} className="flex items-center justify-between p-1 " aria-hidden="true">
                     {products && getRandomProducts(products, 12).map((product) => (
                         <Product {...product} key={product._id} />
                     ))}
