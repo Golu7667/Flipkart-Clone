@@ -6,7 +6,7 @@ function isDate(val) {
 function isObj(val) {
     return typeof val === 'object'
 }
-
+ 
 function stringifyValue(val) {
     if (isObj(val) && !isDate(val)) {
         return JSON.stringify(val)
