@@ -5,6 +5,7 @@ import { getRandomProducts } from '../../../utils/functions';
 import { settings } from '../DealSlider/DealSlider';
 import Product from './Product';
 
+
 const ProductSlider = ({ title, tagline }) => {
 
     const { loading, products } = useSelector((state) => state.products);

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToWishlist, removeFromWishlist } from '../../../actions/wishlistAction';
 import { useSnackbar } from 'notistack';
+import LazyLoad from 'react-lazyload';
 
 const Product = (props) => {
 
@@ -31,9 +32,11 @@ const Product = (props) => {
         <div className="flex flex-col items-center gap-2 px-2 py-6 relative">
             {/* <!-- image & product title --> */}
             <Link to={`/product/${_id}`} className="flex flex-col items-center text-center group">
+            <LazyLoad>
                 <div className="w-36 h-36">
                     <img draggable="false" className="w-full h-full object-contain" src={images[0].url} alt={name} />
                 </div>
+                </LazyLoad>
                 <h2 className="text-sm mt-4 group-hover:text-primary-blue">{name.length > 50 ? `${name.substring(0, 50)}...` : name}</h2>
             </Link>
             {/* <!-- image & product title --> */}
