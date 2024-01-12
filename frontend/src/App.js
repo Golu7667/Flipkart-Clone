@@ -141,7 +141,7 @@ function App() {
         <Login />
         </Suspense>
         } />
-        <Route path="/register" element={<Suspense fallback={<div>Loading...</div>}<Register /> </Suspense>} />
+        <Route path="/register" element={<Suspense fallback={<div>Loading...</div>}><Register /> </Suspense>} />
 
         <Route path="/product/:id" element={
         <Suspense fallback={<div>Loading...</div>}>
