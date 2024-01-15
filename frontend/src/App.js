@@ -36,8 +36,7 @@
 // import ReviewsTable from './components/Admin/ReviewsTable';
 // import Wishlist from './components/Wishlist/Wishlist';
 // import NotFound from './components/NotFound';
-// const Login= React.lazy(() => import('./components/User/Login'))
-// const Footer = React.lazy(() => import('./components/Layouts/Footer/Footer'))
+
 
 import React, { useEffect, Suspense } from 'react';
 import { useDispatch } from 'react-redux';
